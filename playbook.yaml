@@ -1,0 +1,192 @@
+- hosts: servers
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  tasks:
+    - name: Ensure "geany" is not installed
+      apt:
+        name: geany
+        state: absent
+      become: true
+
+    - name: Ensure "geany-common" is not installed
+      apt:
+        name: geany-common
+        state: absent
+      become: true
+
+    - name: Ensure "chromium" is not installed
+      apt:
+        name: chromium
+        state: absent
+      become: true
+
+    - name: Ensure "chromium-common" is not installed
+      apt:
+        name: chromium-common
+        state: absent
+      become: true
+
+    - name: Ensure "chromium-sandbox" is not installed
+      apt:
+        name: chromium-sandbox
+        state: absent
+      become: true
+
+    - name: Ensure "chromium-l10n" is not installed
+      apt:
+        name: chromium-l10n
+        state: absent
+      become: true
+
+    - name: Ensure "firefox" is not installed
+      apt:
+        name: firefox
+        state: absent
+      become: true
+
+    - name: Ensure "ffmpeg" is not installed
+      apt:
+        name: ffmpeg
+        state: absent
+      become: true
+
+    - name: Ensure "vlc" is not installed
+      apt:
+        name: vlc
+        state: absent
+      become: true
+
+    - name: Ensure "vlc-bin" is not installed
+      apt:
+        name: vlc-bin
+        state: absent
+      become: true
+
+    - name: Ensure "vlc-data" is not installed
+      apt:
+        name: vlc-data
+        state: absent
+      become: true
+
+    - name: Ensure "vlc-l10n" is not installed
+      apt:
+        name: vlc-l10n
+        state: absent
+      become: true
+
+    - name: Ensure "vlc-plugin-access-extra" is not installed
+      apt:
+        name: vlc-plugin-access-extra
+        state: absent
+      become: true
+
+    - name: Ensure "vlc-plugin-visualization" is not installed
+      apt:
+        name: vlc-plugin-visualization
+        state: absent
+      become: true
+
+    - name: Ensure "vlc-plugin-video-splitter" is not installed
+      apt:
+        name: vlc-plugin-video-splitter
+        state: absent
+      become: true
+
+    - name: Ensure "vlc-plugin-video-output" is not installed
+      apt:
+        name: vlc-plugin-video-output
+        state: absent
+      become: true
+
+    - name: Ensure "vlc-plugin-skins2" is not installed
+      apt:
+        name: vlc-plugin-skins2
+        state: absent
+      become: true
+
+    - name: Ensure "vlc-plugin-samba" is not installed
+      apt:
+        name: vlc-plugin-samba
+        state: absent
+      become: true
+
+    - name: Ensure "vlc-plugin-qt" is not installed
+      apt:
+        name: vlc-plugin-qt
+        state: absent
+      become: true
+
+    - name: Ensure "vlc-plugin-notify" is not installed
+      apt:
+        name: vlc-plugin-notify
+        state: absent
+      become: true
+
+    - name: Ensure "vim" is installed
+      apt:
+        name: vim
+        state: present
+      become: true
+
+    - name: Remove "neovim" package
+      apt:
+        name: neovim
+        state: absent
+      become: true
+
+    - name: Set ansible user groups
+      user:
+        name: ansible
+        shell: /bin/bash
+        groups: ansible,sudo,users
+      become: true
+
+    - name: Ensure "git" is installed
+      apt:
+        name: git
+        state: latest
+        update_cache: true
+      become: true
+    
+    - name: Ensure "zip" is installed
+      apt:
+        name: zip
+        state: latest
+        update_cache: true
+      become: true
+
+- hosts: mysql
+  tasks:
+    - name: Ensure mysql-server-8.0 is installed
+      apt:
+        name: mysql-server-8.0
+        state: present
+      become: true
+
+    - name: Ensure python3-pymysql is installed
+      apt:
+        name: python3-pymysql
+        state: present
+      become: true
+
+    - name: Ensure mysql is running
+      service:
+        name: mysql
+        state: started
+
+    - name: Get the mysql version
+      become: true
+      mysql_info:
+        config_file: /home/ansible/.my.cnf
+        filter: version
+
+    - name: Collect info about databases
+      become: true
+      community.mysql.mysql_info:
+        config_file: /home/ansible/.my.cnf
+        filter:
+        - databases
+        - version
+        exclude_fields: db_size
+        return_empty_dbs: true
