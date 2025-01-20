@@ -156,6 +156,76 @@
         update_cache: true
       become: true
 
+    - name: Ensure "build-essential" is installed
+      apt:
+        name: build-essential
+        state: latest
+        update_cache: true
+      become: true
+
+    - name: Ensure "zlib1g-dev" is installed
+      apt:
+        name: zlib1g-dev
+        state: latest
+        update_cache: true
+      become: true
+
+    - name: Ensure "libncurses5-dev" is installed
+      apt:
+        name: libncurses5-dev
+        state: latest
+        update_cache: true
+      become: true
+
+    - name: Ensure "libgdbm-dev" is installed
+      apt:
+        name: libgdbm-dev
+        state: latest
+        update_cache: true
+      become: true
+
+    - name: Ensure "libnss3-dev" is installed
+      apt:
+        name: libnss3-dev
+        state: latest
+        update_cache: true
+      become: true
+
+    - name: Ensure "libssl-dev" is installed
+      apt:
+        name: libssl-dev
+        state: latest
+        update_cache: true
+      become: true
+
+    - name: Ensure "libreadline-dev" is installed
+      apt:
+        name: libreadline-dev
+        state: latest
+        update_cache: true
+      become: true
+
+    - name: Ensure "libffi-dev" is installed
+      apt:
+        name: libffi-dev
+        state: latest
+        update_cache: true
+      become: true
+
+    - name: Ensure "libsqlite3-dev" is installed
+      apt:
+        name: libsqlite3-dev
+        state: latest
+        update_cache: true
+      become: true
+
+    - name: Ensure "wget" is installed
+      apt:
+        name: wget
+        state: latest
+        update_cache: true
+      become: true
+
 - hosts: mysql
   tasks:
     - name: Ensure mysql-server-8.0 is installed
