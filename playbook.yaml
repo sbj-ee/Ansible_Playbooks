@@ -1,253 +1,251 @@
+---
 - hosts: servers
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
-
   tasks:
     - name: Ensure "geany" is not installed
-      apt:
+      ansible.builtin.apt:
         name: geany
         state: absent
       become: true
 
     - name: Ensure "geany-common" is not installed
-      apt:
+      ansible.builtin.apt:
         name: geany-common
         state: absent
       become: true
 
     - name: Ensure "chromium" is not installed
-      apt:
+      ansible.builtin.apt:
         name: chromium
         state: absent
       become: true
 
     - name: Ensure "chromium-common" is not installed
-      apt:
+      ansible.builtin.apt:
         name: chromium-common
         state: absent
       become: true
 
     - name: Ensure "chromium-sandbox" is not installed
-      apt:
+      ansible.builtin.apt:
         name: chromium-sandbox
         state: absent
       become: true
 
     - name: Ensure "chromium-l10n" is not installed
-      apt:
+      ansible.builtin.apt:
         name: chromium-l10n
         state: absent
       become: true
 
     - name: Ensure "firefox" is not installed
-      apt:
+      ansible.builtin.apt:
         name: firefox
         state: absent
       become: true
 
     - name: Ensure "ffmpeg" is not installed
-      apt:
+      ansible.builtin.apt:
         name: ffmpeg
         state: absent
       become: true
 
     - name: Ensure "vlc" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc
         state: absent
       become: true
 
     - name: Ensure "vlc-bin" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc-bin
         state: absent
       become: true
 
     - name: Ensure "vlc-data" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc-data
         state: absent
       become: true
 
     - name: Ensure "vlc-l10n" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc-l10n
         state: absent
       become: true
 
     - name: Ensure "vlc-plugin-access-extra" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc-plugin-access-extra
         state: absent
       become: true
 
     - name: Ensure "vlc-plugin-visualization" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc-plugin-visualization
         state: absent
       become: true
 
     - name: Ensure "vlc-plugin-video-splitter" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc-plugin-video-splitter
         state: absent
       become: true
 
     - name: Ensure "vlc-plugin-video-output" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc-plugin-video-output
         state: absent
       become: true
 
     - name: Ensure "vlc-plugin-skins2" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc-plugin-skins2
         state: absent
       become: true
 
     - name: Ensure "vlc-plugin-samba" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc-plugin-samba
         state: absent
       become: true
 
     - name: Ensure "vlc-plugin-qt" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc-plugin-qt
         state: absent
       become: true
 
     - name: Ensure "vlc-plugin-notify" is not installed
-      apt:
+      ansible.builtin.apt:
         name: vlc-plugin-notify
         state: absent
       become: true
 
     - name: Ensure "vim" is installed
-      apt:
+      ansible.builtin.apt:
         name: vim
         state: present
       become: true
 
     - name: Remove "neovim" package
-      apt:
+      ansible.builtin.apt:
         name: neovim
         state: absent
       become: true
 
     - name: Set ansible user groups
-      user:
+      ansible.builtin.user:
         name: ansible
         shell: /bin/bash
         groups: ansible,sudo,users
       become: true
 
     - name: Ensure "git" is installed
-      apt:
+      ansible.builtin.apt:
         name: git
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
-    
+
     - name: Ensure "zip" is installed
-      apt:
+      ansible.builtin.apt:
         name: zip
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "build-essential" is installed
-      apt:
+      ansible.builtin.apt:
         name: build-essential
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "zlib1g-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: zlib1g-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libncurses5-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libncurses5-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libgdbm-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libgdbm-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libnss3-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libnss3-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libssl-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libssl-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libreadline-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libreadline-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libffi-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libffi-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libsqlite3-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libsqlite3-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "wget" is installed
-      apt:
+      ansible.builtin.apt:
         name: wget
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
 - hosts: mysql
   tasks:
     - name: Ensure mysql-server-8.0 is installed
-      apt:
+      ansible.builtin.apt:
         name: mysql-server-8.0
         state: present
       become: true
 
     - name: Ensure python3-pymysql is installed
-      apt:
+      ansible.builtin.apt:
         name: python3-pymysql
         state: present
       become: true
 
     - name: Ensure mysql is running
-      service:
+      ansible.builtin.service:
         name: mysql
         state: started
 
     - name: Get the mysql version
       become: true
-      mysql_info:
+      community.mysql.mysql_info:
         config_file: /home/ansible/.my.cnf
         filter: version
 
@@ -256,7 +254,7 @@
       community.mysql.mysql_info:
         config_file: /home/ansible/.my.cnf
         filter:
-        - databases
-        - version
+          - databases
+          - version
         exclude_fields: db_size
         return_empty_dbs: true
