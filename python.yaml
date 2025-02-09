@@ -1,5 +1,6 @@
 ---
-- hosts: servers
+- name: Ensure we have python source and all build requirements
+  hosts: servers
 
   tasks:
     - name: Ensure "git" is installed
