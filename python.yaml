@@ -1,89 +1,88 @@
+---
 - hosts: servers
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
 
   tasks:
     - name: Ensure "git" is installed
-      apt:
+      ansible.builtin.apt:
         name: git
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
-    
+
     - name: Ensure "zip" is installed
-      apt:
+      ansible.builtin.apt:
         name: zip
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "build-essential" is installed
-      apt:
+      ansible.builtin.apt:
         name: build-essential
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "zlib1g-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: zlib1g-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libncurses5-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libncurses5-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libgdbm-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libgdbm-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libnss3-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libnss3-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libssl-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libssl-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libreadline-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libreadline-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libffi-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libffi-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "libsqlite3-dev" is installed
-      apt:
+      ansible.builtin.apt:
         name: libsqlite3-dev
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
     - name: Ensure "wget" is installed
-      apt:
+      ansible.builtin.apt:
         name: wget
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       become: true
 
@@ -91,10 +90,10 @@
       ansible.builtin.file:
         path: /home/ansible/Python
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Pull "Python-3.12.3.tgz"
       ansible.builtin.get_url:
         url: https://www.python.org/ftp/python/3.12.3/Python-3.12.3.tgz
         dest: /home/ansible/Python/Python-3.12.3.tgz
-        mode: '0440'
+        mode: "0440"
