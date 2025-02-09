@@ -1,5 +1,6 @@
 ---
-- hosts: servers
+- name: Check for consistent packages
+  hosts: servers
   tasks:
     - name: Ensure "geany" is not installed
       ansible.builtin.apt:
@@ -224,7 +225,8 @@
         update_cache: true
       become: true
 
-- hosts: mysql
+- name: Check mysql status
+  hosts: mysql
   tasks:
     - name: Ensure mysql-server-8.0 is installed
       ansible.builtin.apt:
