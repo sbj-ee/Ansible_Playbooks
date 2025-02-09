@@ -10,3 +10,8 @@ Keeps all the ubuntu/debian/raspian updated.
 Ensures all the required packages to compile python exist.
 Pulls python 3.13.3 into a directory.
 It does not compile it... I stopped short.
+
+# Ansible Lint
+`pip install ansible-lint`
+
+`ansible-lint <playbook>`
