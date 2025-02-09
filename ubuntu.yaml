@@ -1,30 +1,28 @@
 ---
 - hosts: ubuntu
-  gather_facts: yes
-  become: yes
-  become_method: sudo
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
+  gather_facts: true
+  become: true
+  become_method: ansible.builtin.sudo
   tasks:
     - name: Update package lists
-      apt:
-        update_cache: yes
+      ansible.builtin.apt:
+        update_cache: true
 
-    - name: Upgrade packages.
-      apt:
+    - name: Upgrade packages
+      ansible.builtin.apt:
         upgrade: dist
 
-    - name: Check if reboot required.
-      stat:
+    - name: Check if reboot required
+      ansible.builtin.stat:
         path: /var/run/reboot-required
-        get_checksum: no
+        get_checksum: false
       register: reboot_required_file
 
-    - name: Reboot Servers if required.
-      reboot:
+    - name: Reboot Servers if required
+      ansible.builtin.reboot:
       when: reboot_required_file.stat.exists == true
 
-    - name: Remove dependencies no longer required.
-      apt:
-        autoremove: yes
-        autoclean: yes
+    - name: Remove dependencies no longer required
+      ansible.builtin.apt:
+        autoremove: true
+        autoclean: true
