@@ -1,5 +1,6 @@
 ---
-- hosts: ubuntu
+- name: Keep ubuntu/debian/raspian up-to-date
+  hosts: ubuntu
   gather_facts: true
   become: true
   become_method: ansible.builtin.sudo
