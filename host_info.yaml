@@ -1,0 +1,11 @@
+---
+- name: Display system information
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Display hostname
+      debug:
+        msg: "The hostname of this system is {{ ansible_facts['hostname'] }}"
+    - name: Display OS type
+      debug:
+        msg: "This system is running {{ ansible_facts['os_family'] }} OS: {{ ansible_lsb['description'] }}"
