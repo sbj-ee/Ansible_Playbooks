@@ -1,0 +1,36 @@
+---
+- name: Check mysql status
+  hosts: mysql
+  tasks:
+    - name: Ensure mysql-server-8.0 is installed
+      ansible.builtin.apt:
+        name: mysql-server-8.0
+        state: present
+      become: true
+
+    - name: Ensure python3-pymysql is installed
+      ansible.builtin.apt:
+        name: python3-pymysql
+        state: present
+      become: true
+
+    - name: Ensure mysql is running
+      ansible.builtin.service:
+        name: mysql
+        state: started
+
+    - name: Get the mysql version
+      become: true
+      community.mysql.mysql_info:
+        config_file: /home/ansible/.my.cnf
+        filter: version
+
+    - name: Collect info about databases
+      become: true
+      community.mysql.mysql_info:
+        config_file: /home/ansible/.my.cnf
+        filter:
+          - databases
+          - version
+        exclude_fields: db_size
+        return_empty_dbs: true
