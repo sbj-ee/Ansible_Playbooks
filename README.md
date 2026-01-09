@@ -1,17 +1,74 @@
-# Ansible_Playbooks
+# Ansible Playbooks
 
-## playbook.yaml
-A general purpose ansible-playbook that ensures some packages are installed/uninstalled, sets the group for the `ansible` user on the servers, then checks a mysql server.
+A collection of reusable Ansible playbooks for server management and configuration.
 
-## ubuntu.yaml
-Keeps all the ubuntu/debian/raspian updated.
+## Requirements
 
-## python.yaml
-Ensures all the required packages to compile python exist.
-Pulls python 3.13.3 into a directory.
-It does not compile it... I stopped short.
+- Ansible 2.9+
+- SSH access to target hosts
 
-# Ansible Lint
-`pip install ansible-lint`
+## Installation
 
-`ansible-lint <playbook>`
+```bash
+pip install ansible ansible-lint
+```
+
+## Playbooks
+
+### playbook.yaml
+
+General purpose playbook that:
+- Ensures required packages are installed/uninstalled
+- Sets the group for the `ansible` user on servers
+- Checks MySQL server status
+
+```bash
+ansible-playbook -i inventory playbook.yaml
+```
+
+### ubuntu.yaml
+
+Keeps Ubuntu/Debian/Raspbian systems updated with latest packages.
+
+```bash
+ansible-playbook -i inventory ubuntu.yaml
+```
+
+### python.yaml
+
+Prepares systems for Python compilation:
+- Installs build dependencies (gcc, make, zlib, libssl, etc.)
+- Downloads Python 3.13.3 source code
+- Does not compile (manual step required)
+
+```bash
+ansible-playbook -i inventory python.yaml
+```
+
+### mysql.yaml
+
+MySQL server management playbook.
+
+### all_facts.yaml / host_info.yaml
+
+Gather and display system facts from target hosts.
+
+## Usage
+
+```bash
+# Run playbook against inventory
+ansible-playbook -i inventory <playbook.yaml>
+
+# Run with verbose output
+ansible-playbook -i inventory <playbook.yaml> -v
+
+# Dry run (check mode)
+ansible-playbook -i inventory <playbook.yaml> --check
+```
+
+## Linting
+
+```bash
+pip install ansible-lint
+ansible-lint <playbook>
+```
